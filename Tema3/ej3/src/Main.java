@@ -40,11 +40,11 @@ public class Main {
                 menu();
                 break;
             case 3:
-
+                borrarTop();
                 menu();
                 break;
             case 4:
-
+                mostrarPila();
                 menu();
                 break;
             case 5:
@@ -56,33 +56,48 @@ public class Main {
                 System.exit(0);
                 break;
     }
-    }
+}
+
     public static void nuevoLibro(){
         boolean otro = true;
+        String nombreLibro;
+        String seguir;
         do{
         System.out.println("Nombre del libro que deseas añadir? ");
-        sc.nextLine();
-        String nombreLibro = sc.nextLine();
+        nombreLibro = sc.nextLine();
         libros.push(nombreLibro);
-        System.out.println("quieres añadir otro? (1.SI / 2.NO)");
-        int seguir = sc.nextInt();
-        if (seguir == 1){
+        System.out.println("libro añadido :" + libros.peek());
+        System.out.println("quieres añadir otro? (SI / NO)");
+        seguir = sc.nextLine();
+        if (seguir.equals("si") || seguir.equals("SI") || seguir.equals("Si")){
             otro = true;
-        } else if (seguir == 2) {
+        } else if (seguir.equals("NO") || seguir.equals("No") || seguir.equals("no")) {
             otro = false;
         }
     }while (otro == true);
 }
 
     public static void libroTop(){
-       System.out.println("el libro es:" + libros.peek());
+       System.out.println("el libro es :" + libros.peek());
     }
 
     public static void empty(){
         if(libros.isEmpty()){
             System.out.println("la pila esta vacia");
         }else {
-            System.out.println("la pila contiene " + libros.size() + " libros");
+            System.out.println("No esta vacia, la pila contiene " + libros.size() + " libros");
         }
     }
-}
+    public static void borrarTop(){
+        System.out.println("Se borrara el libro: " + libros.peek());
+        libros.pop();
+        System.out.println("El nuevo top es: " + libros.peek());
+    }
+    public static void mostrarPila(){
+        if(libros.isEmpty()){
+            System.out.println("La pila esta vacia");
+        }else {
+                System.out.println(libros);
+            }
+        }
+    }
